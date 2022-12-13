@@ -1,7 +1,7 @@
 package frc.robot;
 
 import java.util.List;
-import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
@@ -25,7 +26,7 @@ public class RobotContainer
 {
     private final SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
 
-    private final Joystick driverJoytick = new Joystick(OIConstants.kDriverControllerPort);
+    private final XboxController driverJoytick = new XboxController(OIConstants.kDriverControllerPort);
 
     public RobotContainer() 
     {

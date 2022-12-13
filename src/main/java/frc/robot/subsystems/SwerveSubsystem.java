@@ -2,6 +2,9 @@ package frc.robot.subsystems;
 
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
@@ -13,6 +16,8 @@ import frc.robot.Constants.DriveConstants;
 
 public class SwerveSubsystem extends SubsystemBase 
 {
+    ShuffleboardTab tab = Shuffleboard.getTab("Sun Drivetrain");
+
     private final SwerveModule frontLeft = new SwerveModule(
             DriveConstants.kFrontLeftDriveMotorPort,
             DriveConstants.kFrontLeftTurningMotorPort,
@@ -20,7 +25,10 @@ public class SwerveSubsystem extends SubsystemBase
             DriveConstants.kFrontLeftTurningEncoderReversed,
             DriveConstants.kFrontLeftDriveAbsoluteEncoderPort,
             DriveConstants.kFrontLeftDriveAbsoluteEncoderOffsetRad,
-            DriveConstants.kFrontLeftDriveAbsoluteEncoderReversed);
+            DriveConstants.kFrontLeftDriveAbsoluteEncoderReversed,
+            tab.getLayout("Front Left Module", BuiltInLayouts.kList)
+                    .withSize(2, 4)
+                    .withPosition(0, 0));
 
     private final SwerveModule frontRight = new SwerveModule(
             DriveConstants.kFrontRightDriveMotorPort,
@@ -29,7 +37,10 @@ public class SwerveSubsystem extends SubsystemBase
             DriveConstants.kFrontRightTurningEncoderReversed,
             DriveConstants.kFrontRightDriveAbsoluteEncoderPort,
             DriveConstants.kFrontRightDriveAbsoluteEncoderOffsetRad,
-            DriveConstants.kFrontRightDriveAbsoluteEncoderReversed);
+            DriveConstants.kFrontRightDriveAbsoluteEncoderReversed,
+            tab.getLayout("Front Right Module", BuiltInLayouts.kList)
+            .withSize(2, 4)
+            .withPosition(2, 0));
 
     private final SwerveModule backLeft = new SwerveModule(
             DriveConstants.kBackLeftDriveMotorPort,
@@ -38,7 +49,10 @@ public class SwerveSubsystem extends SubsystemBase
             DriveConstants.kBackLeftTurningEncoderReversed,
             DriveConstants.kBackLeftDriveAbsoluteEncoderPort,
             DriveConstants.kBackLeftDriveAbsoluteEncoderOffsetRad,
-            DriveConstants.kBackLeftDriveAbsoluteEncoderReversed);
+            DriveConstants.kBackLeftDriveAbsoluteEncoderReversed,
+            tab.getLayout("Back Left Module", BuiltInLayouts.kList)
+            .withSize(2, 4)
+            .withPosition(4, 0));
 
     private final SwerveModule backRight = new SwerveModule(
             DriveConstants.kBackRightDriveMotorPort,
@@ -47,7 +61,10 @@ public class SwerveSubsystem extends SubsystemBase
             DriveConstants.kBackRightTurningEncoderReversed,
             DriveConstants.kBackRightDriveAbsoluteEncoderPort,
             DriveConstants.kBackRightDriveAbsoluteEncoderOffsetRad,
-            DriveConstants.kBackRightDriveAbsoluteEncoderReversed);
+            DriveConstants.kBackRightDriveAbsoluteEncoderReversed,
+            tab.getLayout("Back Right Module", BuiltInLayouts.kList)
+            .withSize(2, 4)
+            .withPosition(6, 0));
 
     private final AHRS gyro = new AHRS(SPI.Port.kMXP);
 
