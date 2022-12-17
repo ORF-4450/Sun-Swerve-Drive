@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
+import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 import frc.robot.Constants.AutoConstants;
@@ -26,23 +27,23 @@ public class RobotContainer
 {
     private final SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
 
-    private final XboxController driverJoytick = new XboxController(OIConstants.kDriverControllerPort);
+    private final XboxController driverController = new XboxController(OIConstants.kDriverControllerPort);
 
     public RobotContainer() 
     {
         swerveSubsystem.setDefaultCommand(new SwerveJoystickCmd(
                 swerveSubsystem,
-                () -> -driverJoytick.getRawAxis(OIConstants.kDriverYAxis),
-                () -> driverJoytick.getRawAxis(OIConstants.kDriverXAxis),
-                () -> driverJoytick.getRawAxis(OIConstants.kDriverRotAxis),
-                () -> !driverJoytick.getRawButton(OIConstants.kDriverFieldOrientedButtonIdx)));
+                () -> -driverController.getLeftY(),
+                () -> driverController.getLeftX(),
+                () -> driverController.getRightX(),
+                () -> !driverController.getBackButton()));
 
         configureButtonBindings();
     }
 
     private void configureButtonBindings() 
     {
-        new JoystickButton(driverJoytick, 2).whenPressed(() -> swerveSubsystem.zeroHeading());
+        new Button(driverController::getXButton).whenPressed(() -> swerveSubsystem.zeroHeading());
     }
 
     public Command getAutonomousCommand() 
